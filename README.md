@@ -1,10 +1,14 @@
 <div align="center">
 
+<img src="public/swachhvan-logo.png" alt="SwachhVan Logo" width="280" />
+
 # 🚐 SwachhVan
 
 ### *Smart Mobile Washroom Service for Urban India*
 
 **Hack For Green Bharat 🇮🇳 — Pathway Hackathon Submission**
+
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://hack-for-green-bharat-swachhvan.vercel.app/)
 
 [![React](https://img.shields.io/badge/React-18.3-61DAFB?logo=react&logoColor=white)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?logo=typescript&logoColor=white)](https://typescriptlang.org)
@@ -16,6 +20,8 @@
 ---
 
 *SwachhVan connects citizens with GPS-tracked mobile washroom vans equipped with real-time sensor monitoring, AI-powered chatbot support, and sustainable hygiene solutions — empowering cleaner, greener cities.*
+
+🔗 **[Live Demo → hack-for-green-bharat-swachhvan.vercel.app](https://hack-for-green-bharat-swachhvan.vercel.app/)**
 
 </div>
 

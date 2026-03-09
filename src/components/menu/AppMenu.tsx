@@ -311,7 +311,7 @@ export default function AppMenu() {
             </SheetClose>
           ) : null}
 
-          <div className="text-center text-[11px] text-muted-foreground">v0.1 • UI prototype</div>
+          <div className="text-center text-[11px] text-muted-foreground">SwachhVan v1.0</div>
         </div>
       </SheetContent>
     </Sheet>

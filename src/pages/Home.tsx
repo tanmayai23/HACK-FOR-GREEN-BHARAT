@@ -26,14 +26,14 @@ const OPTIONS: ServiceOption[] = [
     id: "washroom",
     title: "Book Washroom",
     subtitle: "Clean western seat + privacy",
-    price: 10,
+    price: 20,
     icon: <Toilet className="h-4 w-4" />,
   },
   {
     id: "fresh",
     title: "Freshen Up",
     subtitle: "Tissue + sanitizer + quick clean",
-    price: 20,
+    price: 40,
     icon: <Droplet className="h-4 w-4" />,
   },
   {

@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { RequireAuth } from "@/components/RequireAuth";
 import ChatBot from "@/components/ChatBot";
+import PwaInstallPrompt from "@/components/PwaInstallPrompt";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Home from "./pages/Home";
@@ -178,6 +179,7 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
           <ChatBot />
+          <PwaInstallPrompt />
         </BrowserRouter>
       </AuthProvider>
     </TooltipProvider>

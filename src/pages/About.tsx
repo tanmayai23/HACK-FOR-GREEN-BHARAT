@@ -60,7 +60,7 @@ export default function About() {
 
               <div className="mt-5 space-y-3 text-sm leading-relaxed text-foreground">
                 <p>
-                  SwachhVan is a mobile-first prototype for on-demand washroom and hygiene services. The goal is to make clean,
+                  SwachhVan is a mobile-first platform for on-demand washroom and hygiene services. The goal is to make clean,
                   dignified facilities available where and when people need them.
                 </p>
               </div>
@@ -118,13 +118,13 @@ export default function About() {
                 <div className="rounded-2xl bg-black/[0.03] p-4 ring-1 ring-black/5">
                   <div className="flex items-center gap-2">
                     <Sparkles className="h-4 w-4" />
-                    <p className="text-sm font-semibold">Innovation (prototype vision)</p>
+                    <p className="text-sm font-semibold">Innovation</p>
                   </div>
                   <ul className="mt-2 space-y-1 text-sm text-muted-foreground">
-                    <li>Live availability + ETA (demo UI)</li>
-                    <li>Service selection with transparent pricing (₹10 / ₹20)</li>
-                    <li>Cash or digital payment flow (mock)</li>
-                    <li>Cleanliness ratings + operator checklist idea</li>
+                    <li>Live availability + ETA tracking</li>
+                    <li>Service selection with transparent pricing (₹20 / ₹40)</li>
+                    <li>Cash or digital payment options</li>
+                    <li>Cleanliness ratings + operator checklist</li>
                   </ul>
                 </div>
 

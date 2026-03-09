@@ -1,7 +1,17 @@
 """
 SwachhVan - Van Data Simulator
 Simulates 8 vans moving around Delhi NCR with GPS + sensor data.
-Writes telemetry to a JSON-Lines file (for Pathway) AND updates Supabase directly.
+Writes telemetry to JSONL batch files in data/van_stream/ for Pathway
+to ingest in real-time streaming mode, AND updates Supabase directly.
+
+Architecture:
+  van_simulator.py  ──writes──►  data/van_stream/batch_NNN.jsonl
+                                        │
+                                        ▼
+                               pathway_pipeline.py (auto-detects new files)
+                                        │
+                                        ▼
+                               data/output/ (fleet stats, alerts, etc.)
 
 Usage:
   pip install supabase python-dotenv requests
@@ -50,7 +60,7 @@ except ImportError:
     OPENWEATHER_KEY = ""
 
 # ── Configuration ──────────────────────────────────────
-TELEMETRY_FILE = Path(__file__).parent / "data" / "van_telemetry.jsonl"
+STREAM_DIR = Path(__file__).parent / "data" / "van_stream"
 WEATHER_FILE = Path(__file__).parent / "data" / "weather.json"
 UPDATE_INTERVAL = 5  # seconds between updates
 WEATHER_INTERVAL = 300  # fetch weather every 5 minutes
@@ -331,11 +341,11 @@ def main():
     print(f"Supabase: {'Connected' if HAS_SUPABASE else 'Not configured'}")
     print(f"Weather API: {'Connected' if HAS_WEATHER else 'Using mock data'}")
     print(f"Update interval: {UPDATE_INTERVAL}s")
-    print(f"Telemetry file: {TELEMETRY_FILE}")
+    print(f"Stream dir (Pathway): {STREAM_DIR}")
     print("=" * 60)
 
-    # Ensure data directory exists
-    TELEMETRY_FILE.parent.mkdir(parents=True, exist_ok=True)
+    # Ensure data directories exist
+    STREAM_DIR.mkdir(parents=True, exist_ok=True)
 
     # Initialize simulators
     simulators = [VanSimulator(v) for v in VANS]
@@ -359,13 +369,16 @@ def main():
                 last_weather_fetch = time.time()
                 print(f"\n[Weather Update] {weather['condition']}, {weather['temp_c']}°C, rain: {weather['rain_mm']}mm")
 
-            # Update each van
-            with open(TELEMETRY_FILE, "a") as f:
+            # Write a new JSONL batch file per tick for Pathway to pick up.
+            # Pathway's pw.io.jsonlines.read() in streaming mode monitors
+            # the directory and auto-ingests any new file that appears.
+            batch_file = STREAM_DIR / f"batch_{tick:06d}.jsonl"
+            with open(batch_file, "w") as f:
                 for sim in simulators:
                     sim.update(weather_factor)
                     telemetry = sim.to_telemetry()
 
-                    # Write to JSONL file (for Pathway to read)
+                    # Write to JSONL batch (Pathway ingests this automatically)
                     f.write(json.dumps(telemetry) + "\n")
 
                     # Update Supabase
@@ -374,6 +387,13 @@ def main():
                     # Check alerts
                     if tick % 6 == 0:  # Check alerts every 30s
                         check_alerts(sim)
+
+            # Clean up old batch files to keep disk usage bounded
+            # (keep last 100 batches ≈ 500 s of history)
+            if tick > 100:
+                old_file = STREAM_DIR / f"batch_{tick - 100:06d}.jsonl"
+                if old_file.exists():
+                    old_file.unlink()
 
             # Print summary
             statuses = {}

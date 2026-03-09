@@ -11,7 +11,7 @@ type PhoneShellProps = {
  */
 export default function PhoneShell({ children, className }: PhoneShellProps) {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <div className="mx-auto flex min-h-screen max-w-[420px] flex-col px-4 py-6">
         <div
           className={cn(

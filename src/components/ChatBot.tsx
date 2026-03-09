@@ -80,7 +80,7 @@ export default function ChatBot() {
         aria-label="Open AI chat"
       >
         <MessageCircle className="h-6 w-6" />
-        <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white ring-2 ring-white">
+        <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-emerald-600 text-[10px] font-bold text-white ring-2 ring-white">
           AI
         </span>
       </button>
@@ -88,7 +88,7 @@ export default function ChatBot() {
   }
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 flex h-[520px] w-[340px] flex-col overflow-hidden rounded-3xl bg-white shadow-2xl ring-1 ring-black/10">
+    <div className="fixed bottom-4 right-4 z-50 flex h-[520px] w-[min(340px,calc(100vw-2rem))] flex-col overflow-hidden rounded-3xl bg-white shadow-2xl ring-1 ring-black/10">
       {/* Header */}
       <div className="flex items-center justify-between bg-gradient-to-r from-emerald-600 to-teal-600 px-4 py-3 text-white">
         <div className="flex items-center gap-2">

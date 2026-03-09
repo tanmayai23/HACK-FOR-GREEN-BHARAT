@@ -17,16 +17,14 @@ export default function OnlinePay() {
   const [paid, setPaid] = useState(false);
   const [paying, setPaying] = useState(false);
 
-  const upiId = useMemo(() => "swachhvan@upi (mock)", []);
+  const upiId = useMemo(() => "swachhvan@upi", []);
 
   return (
     <PhoneShell>
       <main className="flex flex-1 flex-col p-4">
-        <header className="flex items-center justify-between pt-2">
+        <header className="flex items-center gap-3 pt-2">
           <AppMenu />
-          <Button asChild variant="editorial" size="pill" className="h-10">
-            <Link to="/payment">Back</Link>
-          </Button>
+          <div className="flex-1" />
           <div className="inline-flex items-center gap-2 rounded-full border bg-background px-3 py-2 text-xs text-muted-foreground shadow-soft">
             <ShieldCheck className="h-3.5 w-3.5" />
             Secure payment
@@ -36,7 +34,7 @@ export default function OnlinePay() {
         <section className="mt-4 space-y-3">
           <Card className="rounded-[26px] border bg-card p-5 shadow-soft">
             <h1 className="text-2xl">Pay online</h1>
-            <p className="mt-1 text-sm text-muted-foreground">Prototype screen (no real payment here)</p>
+            <p className="mt-1 text-sm text-muted-foreground">Complete your payment securely</p>
             <div className="mt-4 rounded-2xl border bg-background p-4">
               <p className="text-xs text-muted-foreground">Amount</p>
               <p className="mt-1 text-3xl font-semibold">₹{amount}</p>
